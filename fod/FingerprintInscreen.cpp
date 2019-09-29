@@ -117,11 +117,11 @@ Return<void> FingerprintInscreen::setCallback(const sp<IFingerprintInscreenCallb
 }
 
 Return<int32_t> FingerprintInscreen::getPositionX() {
-    return 444;
+    return 560;
 }
 
 Return<int32_t> FingerprintInscreen::getPositionY() {
-    return 1966;
+    return 2030;
 }
 
 Return<int32_t> FingerprintInscreen::getSize() {
