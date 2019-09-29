@@ -50,7 +50,9 @@ static T get(const std::string& path, const T& def) {
     return file.fail() ? def : result;
 }
 
-FingerprintInscreen::FingerprintInscreen() {}
+FingerprintInscreen::FingerprintInscreen() {
+    this->mVendorFpService = IBiometricsFingerprint::getService();
+}
 
 Return<void> FingerprintInscreen::onStartEnroll() {
     return Void();
@@ -73,10 +75,12 @@ Return<void> FingerprintInscreen::onRelease() {
 }
 
 Return<void> FingerprintInscreen::onShowFODView() {
+    this->mVendorFpService->setScreenState(vendor::oppo::hardware::biometrics::fingerprint::V2_1::FingerprintScreenState::FINGERPRINT_SCREEN_ON);
     return Void();
 }
 
 Return<void> FingerprintInscreen::onHideFODView() {
+    this->mVendorFpService->setScreenState(vendor::oppo::hardware::biometrics::fingerprint::V2_1::FingerprintScreenState::FINGERPRINT_SCREEN_OFF);
     set(FP_PRESS_PATH, 0);
 
     return Void();
